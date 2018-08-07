@@ -1,4 +1,4 @@
-FROM pantsbuild:pants
+FROM pantsbuild/pants
 
 ENV FLYWAY_VERSION 5.1.4
 
