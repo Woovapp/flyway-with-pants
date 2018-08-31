@@ -1,11 +1,13 @@
-FROM python:2.7.13-wheezy
+FROM python:2.7.15-slim-stretch
 
-# Ensure Pants runs under the 2.7.13 interpreter.
-ENV PANTS_PYTHON_SETUP_INTERPRETER_CONSTRAINTS="['CPython==2.7.13']"
+# Ensure Pants runs under the 2.7.15 interpreter.
+ENV PANTS_PYTHON_SETUP_INTERPRETER_CONSTRAINTS="['CPython==2.7.15']"
+
+RUN mkdir -p /usr/share/man/man1
 
 # Install various things Pants requires.
 RUN apt-get update && \
-    DEBIAN_FRONTEND=noninteractive apt-get install -y openjdk-8-jdk wget xml-twig-tools
+    DEBIAN_FRONTEND=noninteractive apt-get install -y openjdk-8-jdk-headless ca-certificates-java wget xml-twig-tools
 
 ENV FLYWAY_VERSION 5.1.4
 ENV LIQUIGRAPH_VERSION 3.0.3
