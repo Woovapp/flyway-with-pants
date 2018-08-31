@@ -7,7 +7,7 @@ RUN mkdir -p /usr/share/man/man1
 
 # Install various things Pants requires.
 RUN apt-get update && \
-    DEBIAN_FRONTEND=noninteractive apt-get install -y openjdk-8-jdk-headless ca-certificates-java wget xml-twig-tools
+    DEBIAN_FRONTEND=noninteractive apt-get install -y openjdk-8-jdk-headless ca-certificates-java wget xml-twig-tools curl
 
 ENV FLYWAY_VERSION 5.1.4
 ENV LIQUIGRAPH_VERSION 3.0.3
