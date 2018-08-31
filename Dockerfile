@@ -4,7 +4,7 @@ ENV FLYWAY_VERSION 5.1.4
 ENV LIQUIGRAPH_VERSION 3.0.3
 
 # Install various things Pants requires.
-RUN yum install -y wget xml-twig-tools
+RUN yum install -y wget local-perl-XML-Twig
 
 WORKDIR /flyway
 RUN wget https://repo1.maven.org/maven2/org/flywaydb/flyway-commandline/${FLYWAY_VERSION}/flyway-commandline-${FLYWAY_VERSION}.tar.gz \
