@@ -1,7 +1,7 @@
 FROM pantsbuild/centos6
 
-ENV FLYWAY_VERSION 5.1.4
-ENV LIQUIGRAPH_VERSION 3.0.3
+ENV FLYWAY_VERSION 5.2.3
+ENV LIQUIGRAPH_VERSION 3.1.0
 
 # Install various things Pants requires.
 RUN yum install -y wget local-perl-XML-Twig
