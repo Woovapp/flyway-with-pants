@@ -43,7 +43,7 @@ RUN apt-get update -yq \
     && echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list \
     && curl -sL https://deb.nodesource.com/setup_10.x | bash \
     && apt-get install nodejs yarn -yq \
-    && yarn global add artillery@v1.6.0-25 artillery-plugin-metrics-by-endpoint \
+    && yarn global add artillery artillery-plugin-metrics-by-endpoint \
     && apt-get clean autoclean \
     && rm -rf /var/lib/{apt,dpkg,cache,log}/
 
