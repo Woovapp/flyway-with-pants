@@ -22,6 +22,17 @@ RUN wget http://repo1.maven.org/maven2/org/liquigraph/liquigraph-cli/${LIQUIGRAP
 
 COPY migrate_neo4j.sh /usr/liquigraph-cli/
 
+RUN curl -O https://dl.minio.io/server/minio/release/linux-amd64/minio \
+  && chmod +x minio \
+  && mv minio /usr/local/bin/minio \
+  && useradd -r minio-user -s /sbin/nologin \
+  && chown minio-user:minio-user /usr/local/bin/minio \
+  && mkdir -p /usr/local/share/minio \
+  && chown minio-user:minio-user /usr/local/share/minio
+
+ENV MINIO_ACCESS_KEY="WOOV-CI"
+ENV MINIO_SECRET_KEY="WOOVWOOV"
+
 WORKDIR /pants
 RUN curl -L -O https://pantsbuild.github.io/setup/pants && chmod +x pants && touch pants.ini
 
