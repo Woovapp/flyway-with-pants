@@ -35,7 +35,7 @@ COPY migrate_neo4j.sh /usr/liquigraph-cli/
 # Downloading Minio
 ADD https://dl.minio.io/server/minio/release/linux-amd64/minio /usr/bin/minio
 RUN addgroup minio && \
-    chmod +x /usr/bin/minio \
+    chmod +x /usr/bin/minio && \
     adduser -s /bin/false -G minio -S -D minio && \
     mkdir -p /usr/local/share/minio && \
     chown minio:minio /usr/local/share/minio
