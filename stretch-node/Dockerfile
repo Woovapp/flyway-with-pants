@@ -6,7 +6,7 @@ ENV PANTS_PYTHON_SETUP_INTERPRETER_CONSTRAINTS="['CPython==2.7.15']"
 # Install various things Pants requires.
 RUN apt-get update && \
     DEBIAN_FRONTEND=noninteractive apt-get install -y curl git openjdk-8-jdk-headless ca-certificates-java wget xml-twig-tools
-ENV FLYWAY_VERSION 5.2.3
+ENV FLYWAY_VERSION 6.2.3
 ENV LIQUIGRAPH_VERSION 3.1.0
 
 WORKDIR /flyway
@@ -17,7 +17,7 @@ RUN wget https://repo1.maven.org/maven2/org/flywaydb/flyway-commandline/${FLYWAY
   && ln -s /flyway/flyway /usr/local/bin/flyway
 
 WORKDIR /usr
-RUN wget http://repo1.maven.org/maven2/org/liquigraph/liquigraph-cli/${LIQUIGRAPH_VERSION}/liquigraph-cli-${LIQUIGRAPH_VERSION}-bin.tar.gz \
+RUN wget https://repo1.maven.org/maven2/org/liquigraph/liquigraph-cli/${LIQUIGRAPH_VERSION}/liquigraph-cli-${LIQUIGRAPH_VERSION}-bin.tar.gz \
   && tar xzf liquigraph-cli-${LIQUIGRAPH_VERSION}-bin.tar.gz
 
 COPY migrate_neo4j.sh /usr/liquigraph-cli/
