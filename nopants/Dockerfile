@@ -44,12 +44,12 @@ ENV MINIO_SECRET_KEY="WOOVWOOV"
 
 ENV NODE_VERSION 12.16.0
 
-RUN addgroup -g 1000 node \
-    && adduser -u 1000 -G node -s /bin/sh -D node \
+RUN addgroup -g 1001 node \
+    && adduser -u 1001 -G node -s /bin/sh -D node \
     && apk add --no-cache \
         libstdc++ \
     && apk add --no-cache --virtual .build-deps \
-        curl \
+        curl xz \
     && ARCH= && alpineArch="$(apk --print-arch)" \
       && case "${alpineArch##*-}" in \
         x86_64) \
