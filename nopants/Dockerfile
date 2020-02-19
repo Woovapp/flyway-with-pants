@@ -35,6 +35,7 @@ COPY migrate_neo4j.sh /usr/liquigraph-cli/
 # Downloading Minio
 ADD https://dl.minio.io/server/minio/release/linux-amd64/minio /usr/bin/minio
 RUN addgroup minio && \
+    chmod +x /usr/bin/minio \
     adduser -s /bin/false -G minio -S -D minio && \
     mkdir -p /usr/local/share/minio && \
     chown minio:minio /usr/local/share/minio
@@ -130,6 +131,8 @@ RUN apk add --no-cache --virtual .build-deps-yarn curl gnupg tar \
   && ln -s /opt/yarn-v$YARN_VERSION/bin/yarnpkg /usr/local/bin/yarnpkg \
   && rm yarn-v$YARN_VERSION.tar.gz.asc yarn-v$YARN_VERSION.tar.gz \
   && apk del .build-deps-yarn
+
+RUN yarn global add artillery artillery-plugin-metrics-by-endpoint
 
 RUN curl -s https://api.github.com/repos/grpc-ecosystem/grpc-health-probe/releases/latest \
   | grep browser_download_url \
