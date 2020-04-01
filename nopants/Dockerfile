@@ -32,6 +32,17 @@ RUN yarn global add artillery artillery-plugin-metrics-by-endpoint
 ADD install_grpc_health_probe.sh .
 RUN ./install_grpc_health_probe.sh
 
+RUN curl -O https://dl.minio.io/server/minio/release/linux-amd64/minio \
+  && chmod +x minio \
+  && mv minio /usr/local/bin/minio \
+  && useradd -r minio-user -s /sbin/nologin \
+  && chown minio-user:minio-user /usr/local/bin/minio \
+  && mkdir -p /usr/local/share/minio/woov-data \
+  && chown -R minio-user:minio-user /usr/local/share/minio
+
+ENV MINIO_ACCESS_KEY="WOOV-CI"
+ENV MINIO_SECRET_KEY="WOOVWOOV"
+
 # ensure local python is preferred over distribution python
 ENV PATH /usr/local/bin:$PATH
 ENV LANG C.UTF-8
